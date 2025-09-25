@@ -18,27 +18,37 @@ Siga estas instruções para obter uma cópia de trabalho do projeto em sua máq
 Pré-requisitos
 Você precisa ter o Node.js e o npm (ou yarn) instalados.
 
+
+🖼️ Demonstração  
+![Previsualiação do App](assets/app%20clima.png)  
+
 1. Clonar o Repositório
+
 ```Bash
 
 git clone [(https://github.com/alysonrafaell/Electron)]
-cd projeto-desktop´´´
+cd projeto-desktop
+```
 
 2. Instalar Dependências
 Instale todas as dependências do projeto listadas no package.json.
 
-```Bash
+````Bash
 
 npm install
   ou
-yarn install´´´
+yarn install
+````
+    
+
 
 3. Executar o Aplicativo
 Inicie o aplicativo Electron em modo de desenvolvimento.
 
 ```Bash
 
-npm start´´´
+npm start
+```
 
 ⚙️ Configurações e Atalhos
 O aplicativo oferece várias formas de interação:
@@ -48,10 +58,12 @@ Você pode configurar a cidade padrão e a unidade de temperatura acessando a te
 
 Atalhos Globais
 Atalho	Ação
+
 ```Ctrl/Cmd+Q	Fecha o aplicativo (encerra completamente).
 Ctrl/Cmd+N	Foca no campo de busca de nova cidade.
 Ctrl/Cmd+Left	Move a janela para o canto esquerdo da tela.
-Ctrl/Cmd+Right	Move a janela para o canto direito da tela.´´´
+Ctrl/Cmd+Right	Move a janela para o canto direito da tela.
+```
 
 Exportar para as Planilhas
 🏗️ Construção (Build)
@@ -60,13 +72,15 @@ Para gerar um instalador ou um executável da aplicação, você pode usar os sc
 Para Windows
 ```Bash
 
-npm run build-win´´´
+npm run build-win
+```
 
 Para Outros Sistemas
 
 ```Bash
 
-npm run build´´´
+npm run build
+```
 O executável/instalador final será gerado na pasta dist/.
 
 🤝 Contribuição
@@ -74,11 +88,20 @@ Sinta-se à vontade para sugerir melhorias, reportar bugs ou contribuir com cód
 
 Faça um Fork do projeto.
 
-Crie uma branch para sua feature (git checkout -b feature/AmazingFeature).
+Crie uma branch para sua feature 
+```
+(git checkout -b feature/AmazingFeature).
+```
 
-Commit suas mudanças (git commit -m 'Add some AmazingFeature').
+Commit suas mudanças 
+````
+(git commit -m 'Add some AmazingFeature').
+````
 
-Faça um Push para a branch (git push origin feature/AmazingFeature).
+Faça um Push para a branch 
+
+````(git push origin feature/AmazingFeature).
+````
 
 Abra um Pull Request.
 

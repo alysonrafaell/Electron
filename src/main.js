@@ -46,7 +46,7 @@ const WindowManager = {
     mainWindow = new BrowserWindow({
       width: 700,
       height: 700,
-      resizable: false,
+      resizable: true,
       show: false,
       autoHideMenuBar: true,
       icon: path.join(__dirname, '../assets/icons/icon.png'),
