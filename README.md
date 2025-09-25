@@ -1,6 +1,3 @@
-
-#Electron
-
 🌩️ Projeto Desktop - Aplicativo de Clima
 Um aplicativo de clima simples e preciso construído com Electron e Node.js que utiliza a API do OpenWeatherMap.
 
@@ -22,25 +19,27 @@ Pré-requisitos
 Você precisa ter o Node.js e o npm (ou yarn) instalados.
 
 1. Clonar o Repositório
-Bash
+```Bash
 
-git clone []
-cd projeto-desktop
+git clone [(https://github.com/alysonrafaell/Electron)]
+cd projeto-desktop´´´
 
 2. Instalar Dependências
 Instale todas as dependências do projeto listadas no package.json.
 
-Bash
+```Bash
 
 npm install
-# ou
-yarn install
+  ou
+yarn install´´´
+
 3. Executar o Aplicativo
 Inicie o aplicativo Electron em modo de desenvolvimento.
 
-Bash
+```Bash
 
-npm start
+npm start´´´
+
 ⚙️ Configurações e Atalhos
 O aplicativo oferece várias formas de interação:
 
@@ -49,23 +48,25 @@ Você pode configurar a cidade padrão e a unidade de temperatura acessando a te
 
 Atalhos Globais
 Atalho	Ação
-Ctrl/Cmd+Q	Fecha o aplicativo (encerra completamente).
+```Ctrl/Cmd+Q	Fecha o aplicativo (encerra completamente).
 Ctrl/Cmd+N	Foca no campo de busca de nova cidade.
 Ctrl/Cmd+Left	Move a janela para o canto esquerdo da tela.
-Ctrl/Cmd+Right	Move a janela para o canto direito da tela.
+Ctrl/Cmd+Right	Move a janela para o canto direito da tela.´´´
 
 Exportar para as Planilhas
 🏗️ Construção (Build)
 Para gerar um instalador ou um executável da aplicação, você pode usar os scripts de build configurados com electron-builder.
 
 Para Windows
-Bash
+```Bash
 
-npm run build-win
+npm run build-win´´´
+
 Para Outros Sistemas
-Bash
 
-npm run build
+```Bash
+
+npm run build´´´
 O executável/instalador final será gerado na pasta dist/.
 
 🤝 Contribuição
