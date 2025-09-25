@@ -99,8 +99,9 @@ Commit suas mudanças
 ````
 
 Faça um Push para a branch 
-
-````(git push origin feature/AmazingFeature).
+ 
+ ````
+(git push origin feature/AmazingFeature).
 ````
 
 Abra um Pull Request.
