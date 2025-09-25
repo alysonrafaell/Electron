@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações - App De Clima</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        h2 {
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2d3436;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: #74b9ff;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #save-btn {
+            background: #00b894;
+            color: white;
+        }
+        #save-btn:hover {
+            background: #00a382;
+        }
+        #cancel-btn {
+            background: #dfe6e9;
+            color: #2d3436;
+        }
+        #cancel-btn:hover {
+            background: #b2bec3;
+        }
+        
+        /* ESTILOS DO TOOLTIP DE ATALHOS */
+        .atalhos-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #666;
+            cursor: help;
+            font-size: 14px;
+            background: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: #2d3436;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            width: 250px;
+            right: 0;
+            top: 35px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            line-height: 1.4;
+        }
+        
+        .atalhos-info:hover .tooltip {
+            display: block;
+        }
+        
+        .tooltip strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #74b9ff;
+        }
+        
+        .tooltip ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+        
+        .tooltip li {
+            margin: 5px 0;
+        }
+        
+        .tooltip li:hover {
+            color: #a29bfe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>⚙️ Configurações</h2>
+        
+        <!-- TOOLTIP DE ATALHOS -->
+        <div class="atalhos-info">
+            🔤 Atalhos
+            <div class="tooltip">
+                <strong>Atalhos do Aplicativo</strong>
+                <ul>
+                    <li>Ctrl + N: Nova busca</li>
+                    <li>Ctrl + ←: Mover janela para esquerda</li>
+                    <li>Ctrl + →: Mover janela para direita</li>
+                    <li>Ctrl + Q: Sair do aplicativo</li>
+                    <li>ESC: Fechar janela atual</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="config-city">Cidade Padrão:</label>
+            <input type="text" id="config-city" placeholder="Ex: São Paulo">
+        </div>
+        
+        <div class="form-group">
+            <label for="config-unit">Unidade de Temperatura:</label>
+            <select id="config-unit">
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+            </select>
+        </div>
+        
+        <div class="buttons">
+            <button id="cancel-btn">Cancelar</button>
+            <button id="save-btn">Salvar</button>
+        </div>
+    </div>
+
+    <script>
+        // Script de configurações
+        document.addEventListener('DOMContentLoaded', async () => {
+            const saveBtn = document.getElementById('save-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            const cityInput = document.getElementById('config-city');
+            const unitSelect = document.getElementById('config-unit');
+            
+            console.log('Janela de configurações carregada');
+            
+            // Carregar configurações atuais
+            try {
+                const settings = await window.weatherAPI.getSettings();
+                console.log('Configurações carregadas:', settings);
+                
+                if (settings) {
+                    cityInput.value = settings.city || '';
+                    unitSelect.value = settings.unit || 'celsius';
+                }
+            } catch (error) {
+                console.error('Erro ao carregar configurações:', error);
+            }
+            
+            // Salvar configurações
+            saveBtn.addEventListener('click', async () => {
+                const newSettings = {
+                    city: cityInput.value.trim(),
+                    unit: unitSelect.value
+                };
+                
+                if (!newSettings.city) {
+                    alert('Por favor, digite o nome de uma cidade');
+                    return;
+                }
+                
+                try {
+                    console.log('Salvando configurações:', newSettings);
+                    window.weatherAPI.saveSettings(newSettings);
+                    
+                    // Feedback visual
+                    saveBtn.textContent = '✓ Salvo!';
+                    saveBtn.style.background = '#00b894';
+                    setTimeout(() => {
+                        window.close();
+                    }, 1000);
+                    
+                } catch (error) {
+                    console.error('Erro ao salvar configurações:', error);
+                    alert('Erro ao salvar configurações. Tente novamente.');
+                }
+            });
+            
+            // Cancelar
+            cancelBtn.addEventListener('click', () => {
+                window.close();
+            });
+            
+            // Fechar com ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    window.close();
+                }
+                if (e.key === 'Enter') {
+                    saveBtn.click();
+                }
+            });
+            
+            // Focar no campo de cidade ao abrir
+            cityInput.focus();
+        });
+    </script>
+</body>
+</html>
